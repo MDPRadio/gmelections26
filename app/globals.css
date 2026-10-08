@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Drop the licensed files into public/fonts/ (see public/fonts/README.md) */
+@font-face {
+  font-family: 'Democrats Akuru';
+  src: local('Democrats Akuru'), url('/fonts/DemocratsAkuru.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Baabu';
+  src: local('Baabu'), url('/fonts/Baabu.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  @apply bg-sun font-thaana-body text-ink antialiased;
+}
+
+/* Latin digits and codes inside RTL text */
+.num {
+  @apply font-latin;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* CSS fallback for the hero gradient (always rendered under the GPU shader) */
+.sh-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(36px);
+  will-change: transform;
+}
+.sh-b1 {
+  width: 760px; height: 760px; left: -8%; top: -4%;
+  background: radial-gradient(circle, #fff2a8 0%, rgba(255, 242, 168, 0) 68%);
+  animation: shDrift1 22s ease-in-out infinite alternate;
+}
+.sh-b2 {
+  width: 920px; height: 920px; right: -14%; top: 10%;
+  background: radial-gradient(circle, #ffb800 0%, rgba(255, 184, 0, 0) 66%);
+  animation: shDrift2 27s ease-in-out infinite alternate;
+}
+.sh-b3 {
+  width: 660px; height: 660px; left: 30%; bottom: -6%;
+  background: radial-gradient(circle, #ffe35a 0%, rgba(255, 227, 90, 0) 68%);
+  animation: shDrift3 31s ease-in-out infinite alternate;
+}
+@keyframes shDrift1 { to { transform: translate3d(180px, 120px, 0) scale(1.15); } }
+@keyframes shDrift2 { to { transform: translate3d(-220px, 90px, 0) scale(0.9); } }
+@keyframes shDrift3 { to { transform: translate3d(-160px, -110px, 0) scale(1.12); } }
+@media (prefers-reduced-motion: reduce) {
+  .sh-blob { animation: none; }
+}
+@media (max-width: 760px) {
+  .sh-b1 { width: 420px; height: 420px; }
+  .sh-b2 { width: 520px; height: 520px; }
+  .sh-b3 { width: 400px; height: 400px; }
+}
